@@ -20,12 +20,12 @@ class Qiita_Client
   end
 
   def create_item(date, headers)
-    url = self.BASE_URL + self.ENDPOINT[:CREATE]
+    url = BASE_URL + ENDPOINT[:CREATE]
     self.api(url, date, headers, "create")
   end
 
   def update_item(item_id, date, headers)
-    url = self.BASE_URL + self.ENDPOINT[:UPDATE] + item_id
+    url = BASE_URL + ENDPOINT[:UPDATE] + item_id
     self.api(url, date, headers, "update")
   end
 

@@ -76,10 +76,10 @@ end
 
 p "new folder", updated_folders
 
-
-
-
-
+# upload to qiita
+updated_folders.each do |d|
+  upload2qiita(d)
+end
 
 
 # save hash values

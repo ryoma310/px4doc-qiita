@@ -35,9 +35,9 @@ class Qiita_Client
     headers["Authorization"] = "Bearer #{self.access_token}"
 
     if type == "create"
-      response = Faraday.post(uri.path, params.to_json, headers)
+      response = Faraday.post(uri.to_s, params.to_json, headers)
     elsif type == "update"
-      response = Faraday.patch(uri.path, params.to_json, headers)
+      response = Faraday.patch(uri.to_s, params.to_json, headers)
     else
       response = "no such a request type"
     end

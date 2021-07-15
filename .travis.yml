@@ -1,0 +1,17 @@
+language: ruby
+rvm:
+- 2.0.0
+- 1.9.3
+- jruby-19mode
+- rbx-2
+branches:
+  only:
+    - master
+install: bundle install
+cache:
+  directories: vendor/bundle
+script:
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bundle exec ruby deploy/deploy.rb; fi'
+env:
+  global:
+    secure: okWlUSqay1Q3Y+f9eBP+odMIbRmNWdhF7FNeJZxNXPHclifUN+swp31WNHS3qBCkYyFhkIPP5r1zOFPx11cttvEi87JhgJrp5td2HlYQjYLidwRMzTrLn4PYlTjcMBIkLRgwRG953StKMfTb8dTmB9PluCoYHtEOQgYwjansdX1t6ITcXXV9wsWygZzHx5VPOEBxvaB8aUIxaKbfx/b9VpLqr8XGrVhNxkldS3X1U5Sl+KTM2XXs4aVIcd1IqeXB30gmNBUmIbf29XYEeIqNFSNsPFkKXN7C+JKiMhVxMWNbj+4ZYPUw3iw0tnpj2kgsosRVWK1dTKPOaETt3TUJ8EQCh/TOON2G6/AzxuuxUyxOTYbRy6e9ACtXEV/s+CcualTPXfeWE6Jn/YiaZn9Z+WH22X8UkarIYkqrK73G+JJ7DJ8BROYgQa/dcuOFjIJrxduCeTvTNBx1LhOMqsvP78t5Fd8K+0jSPzm5M2meRMHP2Bz/2d7D7DIdLZ6kzahHenQI0RMVMzEJ8hsS0DtpG8VX/i4/V99h8G7QMC84/N5I7yinspVvy2D9T2drg067Tc7wQNNi3uhTbfstudEZDJgBQf2X7eK42HB+KZYe1kGjmR0ZOKcECv1bJyMZpE9SPdqlr81JSk03vCaOmvxGxQeuTAlRs0kMMh1bTT1SiHk=

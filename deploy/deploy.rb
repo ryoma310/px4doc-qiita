@@ -5,6 +5,49 @@ require "json"
 require 'zip'
 require 'digest'
 
+require "net/http"
+
+class Qiita_Client
+  attr_accessor :access_token
+
+  BASE_URL = 'https://qiita.com'
+  ENDPOINT = {
+    "CREATE": '/api/v2/items',
+    "UPDATE": '/api/v2/items/:'
+  }
+
+  def initialize(access_token)
+    self.access_token = access_token
+  end
+
+  def create_item(date, headers)
+    url = BASE_URL + ENDPOINT["CREATE"]
+    self.api(url, date, headers, "create")
+  end
+
+  def update_item(item_id, date, headers)
+    url = BASE_URL + ENDPOINT["UPDATE"] + item_id
+    self.api(url, date, headers, "update")
+  end
+
+  def api(url, params, headers, type)
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = uri.scheme === "https"
+
+    headers["Authorization"] = "Bearer #{self.access_token}"
+
+    if type == "create"
+      response = Faraday.post(uri.path, params.to_json, headers)
+    elsif type == "update"
+      response = Faraday.patch(uri.path, params.to_json, headers)
+    else
+      response = "no such a request type"
+    end
+    response
+  end
+end
+
 def self.checksum(dir)
   files = Dir["#{dir}/**/*"].reject{|f| File.directory?(f)}
   content = files.map{|f| File.read(f)}.join
@@ -21,7 +64,7 @@ def self.upload2qiita(dir)
     return
   end
   
-  client = Qiita:: Client.new(access_token: ENV['QIITA_TOKEN'])
+  client = Qiita_Client.new(access_token: ENV['QIITA_TOKEN'])
   
   params = File.open(params_file_path) do |file|
     JSON.load(file)

@@ -31,6 +31,7 @@ class Qiita_Client
 
   def api(url, params, headers, type)
     uri = URI.parse(url)
+    p @access_token
     headers["Authorization"] = "Bearer " + @access_token
 
     if type == "create"
@@ -59,6 +60,8 @@ def self.upload2qiita(dir)
   if (not File.exist?(publish_check_path)) or (not File.exist?(params_file_path)) or (not File.exist?(body_file_path))
     return
   end
+
+  p ENV["QIITA_TOKEN"]
   
   client = Qiita_Client.new(access_token: ENV["QIITA_TOKEN"])
   

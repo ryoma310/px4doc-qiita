@@ -12,11 +12,12 @@ def self.checksum(dir)
 end
 
 def self.upload2qiita(dir)
+  PUBLISH_CHECK_PATH = dir + '/.publish'
   PARAMS_FILE_PATH = dir + '/params.json'
   ITEM_ID_FILE_PATH = dir + '/ITEM_ID'
   BODY_FILE_PATH = dir + '/main.md'
 
-  if (not File.exist?(PARAMS_FILE_PATH)) or (not File.exist?(BODY_FILE_PATH))
+  if (not File.exist?(PUBLISH_CHECK_PATH)) or (not File.exist?(PARAMS_FILE_PATH)) or (not File.exist?(BODY_FILE_PATH))
     return
   end
   

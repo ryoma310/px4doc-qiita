@@ -41,7 +41,7 @@ class Qiita_Client
     else
       response = "no such a request type"
     end
-    response
+    {status: response.status, body: response.body, headers: response.headers}
   end
 end
 

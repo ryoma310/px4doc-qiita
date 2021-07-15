@@ -15,7 +15,7 @@ class Qiita_Client
     UPDATE: '/api/v2/items/:'
   }
 
-  def initialize(access_token)
+  def initialize(access_token:)
     p access_token.to_s
     @access_token = access_token[0]
   end

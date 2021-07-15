@@ -6,7 +6,7 @@ rvm:
 - rbx-2
 branches:
   only:
-    - master
+    - main
 install: bundle install
 cache:
   directories: vendor/bundle

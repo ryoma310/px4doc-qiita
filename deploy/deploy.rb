@@ -11,8 +11,8 @@ class Qiita_Client
 
   BASE_URL = 'https://qiita.com'
   ENDPOINT = {
-    "CREATE": '/api/v2/items',
-    "UPDATE": '/api/v2/items/:'
+    CREATE: '/api/v2/items',
+    UPDATE: '/api/v2/items/:'
   }
 
   def initialize(access_token)
@@ -20,12 +20,12 @@ class Qiita_Client
   end
 
   def create_item(date, headers)
-    url = BASE_URL + ENDPOINT["CREATE"]
+    url = self.BASE_URL + self.ENDPOINT[:CREATE]
     self.api(url, date, headers, "create")
   end
 
   def update_item(item_id, date, headers)
-    url = BASE_URL + ENDPOINT["UPDATE"] + item_id
+    url = self.BASE_URL + self.ENDPOINT[:UPDATE] + item_id
     self.api(url, date, headers, "update")
   end
 

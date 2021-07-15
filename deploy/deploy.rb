@@ -3,6 +3,7 @@ require "bundler/setup"
 require "json"  
 require 'zip'
 require 'digest'
+require "faraday"
 
 require "net/http"
 
@@ -31,9 +32,6 @@ class Qiita_Client
 
   def api(url, params, headers, type)
     uri = URI.parse(url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = uri.scheme === "https"
-
     headers["Authorization"] = "Bearer #{self.access_token}"
 
     if type == "create"

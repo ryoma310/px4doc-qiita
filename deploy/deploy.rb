@@ -12,30 +12,30 @@ def self.checksum(dir)
 end
 
 def self.upload2qiita(dir)
-  PUBLISH_CHECK_PATH = dir + '/.publish'
-  PARAMS_FILE_PATH = dir + '/params.json'
-  ITEM_ID_FILE_PATH = dir + '/ITEM_ID'
-  BODY_FILE_PATH = dir + '/main.md'
+  publish_check_path = dir + '/.publish'
+  params_file_path = dir + '/params.json'
+  item_id_file_path = dir + '/ITEM_ID'
+  body_file_path = dir + '/main.md'
 
-  if (not File.exist?(PUBLISH_CHECK_PATH)) or (not File.exist?(PARAMS_FILE_PATH)) or (not File.exist?(BODY_FILE_PATH))
+  if (not File.exist?(publish_check_path)) or (not File.exist?(params_file_path)) or (not File.exist?(body_file_path))
     return
   end
   
   client = Qiita:: Client.new(access_token: ENV['QIITA_TOKEN'])
   
-  params = File.open(PARAMS_FILE_PATH) do |file|
+  params = File.open(params_file_path) do |file|
     JSON.load(file)
   end
   headers = {'Content-Type' => 'application/json'}
   
-  body = File.open(BODY_FILE_PATH) do |file|
+  body = File.open(body_file_path) do |file|
     file.read
   end
   
   params['body'] = body
   
-  if File.exist?(ITEM_ID_FILE_PATH) then
-    item_id = File.open(ITEM_ID_FILE_PATH) do |file|
+  if File.exist?(item_id_file_path) then
+    item_id = File.open(item_id_file_path) do |file|
       file.read
     end
     p client.update_item(item_id, params, headers)

@@ -8,7 +8,6 @@ require "faraday"
 require "net/http"
 
 class Qiita_Client
-  attr_accessor :access_token
 
   BASE_URL = 'https://qiita.com'
   ENDPOINT = {
@@ -17,7 +16,7 @@ class Qiita_Client
   }
 
   def initialize(access_token)
-    self.access_token = access_token
+    @access_token = access_token
   end
 
   def create_item(date, headers)
@@ -32,7 +31,7 @@ class Qiita_Client
 
   def api(url, params, headers, type)
     uri = URI.parse(url)
-    headers["Authorization"] = "Bearer #{self.access_token}"
+    headers["Authorization"] = "Bearer " + @access_token
 
     if type == "create"
       response = Faraday.post(uri.to_s, params.to_json, headers)

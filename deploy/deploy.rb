@@ -1,6 +1,5 @@
 require "rubygems"
 require "bundler/setup"
-require "qiita"
 require "json"  
 require 'zip'
 require 'digest'

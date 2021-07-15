@@ -16,7 +16,7 @@ class Qiita_Client
   }
 
   def initialize(access_token)
-    p access_token.class
+    p access_token.to_s
     @access_token = access_token[0]
   end
 

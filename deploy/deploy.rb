@@ -16,7 +16,7 @@ class Qiita_Client
   }
 
   def initialize(access_token)
-    @access_token = access_token
+    @access_token = access_token[0]
   end
 
   def create_item(date, headers)

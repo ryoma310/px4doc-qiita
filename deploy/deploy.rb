@@ -60,7 +60,7 @@ def self.upload2qiita(dir)
     return
   end
   
-  client = Qiita_Client.new(access_token: ENV['QIITA_TOKEN'])
+  client = Qiita_Client.new(access_token: ENV[:QIITA_TOKEN])
   
   params = File.open(params_file_path) do |file|
     JSON.load(file)

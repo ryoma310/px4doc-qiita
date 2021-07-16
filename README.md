@@ -1,6 +1,7 @@
-# px4doc-qiita
-PX4のドキュメントを読んでまとめていく
+# px4doc-qiita [![Build Status](https://travis-ci.com/ryoma310/px4doc-qiita.svg?branch=main)](https://travis-ci.com/ryoma310/px4doc-qiita)
 
+- PX4のドキュメントを読んでまとめていく
+- モチベのためにCI作って記事の自動投稿してみてます
 
 
 ## 参考

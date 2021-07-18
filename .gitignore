@@ -1,3 +1,6 @@
+## Custom
+deploy/cache/hash.json
+
 ## VisualStudioCode
 .vscode/*
 !.vscode/settings.json

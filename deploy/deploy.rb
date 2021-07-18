@@ -84,7 +84,7 @@ def self.upload2qiita(dir)
 end
 
 # read hash values
-HASH_FILE_PATH = 'deploy/hash.json'
+HASH_FILE_PATH = 'deploy/cache/hash.json'
 if File.exist?(HASH_FILE_PATH) then
   File.open(HASH_FILE_PATH) do |file|
     $hash = JSON.load(file)

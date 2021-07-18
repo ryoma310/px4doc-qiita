@@ -6,7 +6,11 @@ branches:
     - main
 install: bundle install
 cache:
-  directories: vendor/bundle
+  directories:
+    - vendor/bundle
+    - deploy/cache
+  apt: true
+  bundler: true
 script:
   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bundle exec ruby deploy/deploy.rb; fi'
 env:

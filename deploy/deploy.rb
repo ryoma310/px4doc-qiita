@@ -88,6 +88,7 @@ HASH_FILE_PATH = 'deploy/cache/hash.json'
 if File.exist?(HASH_FILE_PATH) then
   File.open(HASH_FILE_PATH) do |file|
     $hash = JSON.load(file)
+    p "found hash.json"
   end
 else
   $hash = {}
